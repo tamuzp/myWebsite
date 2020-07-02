@@ -16,6 +16,12 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
+  .content{
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+  }
+
   html {
     box-sizing: border=box;
     font-size: 100%

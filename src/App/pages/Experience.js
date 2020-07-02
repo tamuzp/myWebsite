@@ -2,16 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 
 // Import Container component
-import Container from './../components/Container'
+import Container from '../components/Container'
 
 // Import Link component
-import Link from './../components/Link'
+import Link from '../components/Link'
 
 // Import Section component
-import Section from './../components/Section'
+import Section from '../components/Section'
 
 // Import typography components
-import { Heading, Subheading, Text } from './../components/Typography'
+import { Heading, Subheading, Text } from '../components/Typography'
 
 const PortfolioWrapper = styled(Section)`
   padding-top: 120px;
@@ -140,7 +140,7 @@ export default class Portfolio extends React.Component {
 
           <Text>Let's get in touch:</Text>
 
-          <Link href="mailto:email@example.com">email@example.com</Link>
+          <Link href="mailto:tamuzp@gmail.com">tamuzp@gmail.com</Link>
         </Container>
       </PortfolioWrapper>
     )

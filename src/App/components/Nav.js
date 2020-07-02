@@ -1,6 +1,8 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import Button from './Button'
+import { NavLink } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 const Header = styled.header`
     posittion: fixed;
@@ -14,56 +16,57 @@ const Header = styled.header`
         height
     }
 `
-const NavWrapper = styled.nav`
-    padding: 16px 24px;
+const NavWrapper = styled.div`
+    height: 70px;
 
     @media (max-width: 479px) {
         fles-direction: column;
         align-items: flex-end;
-        
-        ul{
-            padding: 10px 0 0 0;
-            margin: 0;
-            -webkit-transition: all 0.3s;
-            -moz-transition: all 0.3s;
-            -ms-transition: all 0.3s;
-            -o-transition: all 0.3s;
-            transition: all 0.3s;
-            left: 0;
-            flex-direction: column;
-            position: absolute;
-            top: 64px;
+        left: 0;
+        flex-direction: column;
+        position: absolute;
+        background-color: black;
+        width: 100%;
+
+        .menu-enter {
             max-height: 0;
-            background-color: black;
-            width: 100%;
-            opacity: 0;
-
-                ${props => props.isOpen && css`                  
-                    max-height: 1000px;
-                    opacity: 1;                    
-                `}
-        }
-
+          }
+          
+          .menu-enter-active {
+            max-height: 1000px;
+            transition: all 1000ms;
+          }
+          
+          .menu-exit {
+            max-height: 1000px;
+          }
+          
+          .menu-exit-active {
+            max-height: 0;
+            transition: all 300ms;
+          }
     }
 `
-const NavList = styled.ul`
+const NavList = styled.div`
     margin: 0;
     display: flex;
     overflow: hidden;
-    flex-direction: coulmn;
+    flex-direction: row;
     justify-content: flex-end;
-    list-style-type: none;
-    height: auto;
-    max-height: 0;
+    max-height: 1000px;
+    
+    @media (min-width: 470px) {
+        padding: 38px;
+    }
 
-    @media (min-width: 480px) {
-        flex-direction: row;
-        justify-content: flex-end;
+    @media (max-width: 479px) {
+        display: block;
         max-height: 1000px;
+        background-color: black;
     }
 `
 
-const NavItem = styled.li`
+const NavItem = styled.div`
     & + & {
         margin-top: 12px;
     }
@@ -92,50 +95,96 @@ const NavItem = styled.li`
             color: #888;
         }
     }
+
+    .active {
+        color: #888;
+    }
 `
 const NavButton = styled(Button)`
-  @media (min-width: 479px) {
-    display: none;
-  }
+    margin: 16px;
+    @media (min-width: 479px) {
+        display: none;
+    }
 `
+
+function MenuItem(props) {
+    return (
+        <NavItem>
+            <NavLink
+                exact
+                to={props.title === "Home" ? "/" : "/" + props.title}
+                onClick={props.onClick}
+                key={props.i}
+            >{props.title}</NavLink>
+        </NavItem>
+    )
+}
+
 
 export default class Nav extends React.Component {
     constructor(props) {
         super(props)
 
+
         this.state = {
-            show: false
+            isMobile: false,
+            show: true,
+            navMenu: ["Home", "About", "Contact", "Experience"]
         }
 
         this.toggleMenu = this.toggleMenu.bind(this)
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    }
+    
+    componentDidMount() {
+      this.updateWindowDimensions();
+      window.addEventListener('resize', this.updateWindowDimensions);
+    }
+    
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+    
+    updateWindowDimensions() {
+        if(window.innerWidth < 479){
+            this.setState({
+                isMobile: true,
+                show: false
+            })     
+        }else{
+            this.setState({
+                isMobile: false,
+                show: true
+            })    
+        }
     }
 
+
     toggleMenu() {
-        this.setState({
-            show: !this.state.show
-        })
+        if(this.state.isMobile){
+            this.setState({
+                show: !this.state.show
+            })
+        }
     }
 
     render() {
         return (
             <Header>
-                <NavWrapper isOpen={this.state.show}>
+                <NavWrapper>
                     <NavButton onClick={this.toggleMenu}>Menu</NavButton>
-
-                    <NavList>
-                        <NavItem>
-                            <a href="/">Home</a>
-                        </NavItem>
-                        <NavItem>
-                            <a href="/about">About</a>
-                        </NavItem>
-                        <NavItem>
-                            <a href="/contact">Contact</a>
-                        </NavItem>
-                        <NavItem>
-                            <a href="/portfolio">Portfolio</a>
-                        </NavItem>
-                    </NavList>
+                    <CSSTransition
+                        in={this.state.show}
+                        classNames="menu"
+                        timeout={300}
+                        unmountOnExit
+                    >
+                        <NavList>
+                            {this.state.navMenu.map((title, i) => (
+                                <MenuItem in={this.state.show} title={title} onClick={this.toggleMenu} key={i} />
+                            ))}
+                        </NavList>
+                    </CSSTransition>
                 </NavWrapper>
             </Header>
         )
