@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import Timeline from '../components/Timeline'
+
 // Import Container component
 import Container from '../components/Container'
 
@@ -13,7 +15,7 @@ import Section from '../components/Section'
 // Import typography components
 import { Heading, Subheading, Text } from '../components/Typography'
 
-const PortfolioWrapper = styled(Section)`
+const ExperienceWrapper = styled(Section)`
   padding-top: 120px;
   padding-bottom: 80px;
 `
@@ -89,60 +91,28 @@ const PortfolioItemThumbnail = styled.img`
   object-fit: contain;
 `
 
-export default class Portfolio extends React.Component {
+export default class Experience extends React.Component {
   render () {
     return (
-      <PortfolioWrapper>
+      <ExperienceWrapper>
         <Container>
-          <Subheading>Thomas Paine</Subheading>
+          <Subheading>Tamuz Paran</Subheading>
 
-          <Heading>My work</Heading>
+          <Heading>My Experience</Heading>
 
-          <Text>Selected examples of my work. If you want to see more, drop me an email.</Text>
+          <Timeline type="Jobs"/>
 
-          <PortfolioGrid>
-            <PortfolioItem href="">
-              <PortfolioItemThumbnail src="https://source.unsplash.com/z4CAuzwaXrM/600x600" srcSet="https://source.unsplash.com/z4CAuzwaXrM/600x600 1x, https://source.unsplash.com/z4CAuzwaXrM/1200x1200 2x" alt="Example of work" />
-            </PortfolioItem>
+          <Timeline type="Military"/>
 
-            <PortfolioItem href="">
-              <PortfolioItemThumbnail src="https://source.unsplash.com/-aDl1z8_nGY/600x600" srcSet="https://source.unsplash.com/-aDl1z8_nGY/600x600 1x, https://source.unsplash.com/-aDl1z8_nGY/1200x1200 2x" alt="Example of work" />
-            </PortfolioItem>
+          <Timeline type="Education"/>
 
-            <PortfolioItem href="">
-              <PortfolioItemThumbnail src="https://source.unsplash.com/qvEwMfUX_DM/600x600" srcSet="https://source.unsplash.com/qvEwMfUX_DM/600x600 1x, https://source.unsplash.com/qvEwMfUX_DM/1200x1200 2x" alt="Example of work" />
-            </PortfolioItem>
-
-            <PortfolioItem href="">
-              <PortfolioItemThumbnail src="https://source.unsplash.com/9QjbejABFn8/600x600" srcSet="https://source.unsplash.com/9QjbejABFn8/600x600 1x, https://source.unsplash.com/9QjbejABFn8/1200x1200 2x" alt="Example of work" />
-            </PortfolioItem>
-
-            <PortfolioItem href="">
-              <PortfolioItemThumbnail src="https://source.unsplash.com/cDD83wV627U/600x600" srcSet="https://source.unsplash.com/cDD83wV627U/600x600 1x, https://source.unsplash.com/cDD83wV627U/1200x1200 2x" alt="Example of work" />
-            </PortfolioItem>
-
-            <PortfolioItem href="">
-              <PortfolioItemThumbnail src="https://source.unsplash.com/KDYcgCEoFcY/600x600" srcSet="https://source.unsplash.com/KDYcgCEoFcY/600x600 1x, https://source.unsplash.com/KDYcgCEoFcY/1200x1200 2x" alt="Example of work" />
-            </PortfolioItem>
-
-            <PortfolioItem href="">
-              <PortfolioItemThumbnail src="https://source.unsplash.com/oKfCxcKnCo8/600x600" srcSet="https://source.unsplash.com/oKfCxcKnCo8/600x600 1x, https://source.unsplash.com/oKfCxcKnCo8/1200x1200 2x" alt="Example of work" />
-            </PortfolioItem>
-
-            <PortfolioItem href="">
-              <PortfolioItemThumbnail src="https://source.unsplash.com/dClHqW-EfS8/600x600" srcSet="https://source.unsplash.com/dClHqW-EfS8/600x600 1x, https://source.unsplash.com/dClHqW-EfS8/1200x1200 2x" alt="Example of work" />
-            </PortfolioItem>
-
-            <PortfolioItem href="">
-              <PortfolioItemThumbnail src="https://source.unsplash.com/74elF-XSsPg/600x600" srcSet="https://source.unsplash.com/74elF-XSsPg/600x600 1x, https://source.unsplash.com/74elF-XSsPg/1200x1200 2x" alt="Example of work" />
-            </PortfolioItem>
-          </PortfolioGrid>
+          <Timeline type="Language"/>
 
           <Text>Let's get in touch:</Text>
 
           <Link href="mailto:tamuzp@gmail.com">tamuzp@gmail.com</Link>
         </Container>
-      </PortfolioWrapper>
+      </ExperienceWrapper>
     )
   }
 }

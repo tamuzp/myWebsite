@@ -35659,7 +35659,164 @@ class Contact extends _react.default.Component {
 }
 
 exports.default = Contact;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./../components/AwesomeIcon":"App/components/AwesomeIcon.js","./../components/Container":"App/components/Container.js","./../components/Link":"App/components/Link.js","./../components/Section":"App/components/Section.js","./../components/Typography":"App/components/Typography.js"}],"App/pages/Experience.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./../components/AwesomeIcon":"App/components/AwesomeIcon.js","./../components/Container":"App/components/Container.js","./../components/Link":"App/components/Link.js","./../components/Section":"App/components/Section.js","./../components/Typography":"App/components/Typography.js"}],"App/components/Error.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const ErrorDiv = _styledComponents.default.div``;
+var _default = ErrorDiv;
+exports.default = _default;
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"App/Data/data.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Languages = exports.Military = exports.Education = exports.Jobs = void 0;
+const Jobs = [{
+  title: "Full stack AWS project for start-up",
+  yearStart: "2020",
+  yearEND: "2020",
+  points: [{
+    point1: "ReactJS front-end, NodeJS back-end.",
+    point2: "MySQL Database (ERD & Server)."
+  }]
+}, {
+  title: "Full stack developer at Tmura Information Systems",
+  yearStart: "2018",
+  yearEND: "2019",
+  points: [{
+    point1: "Maintenance of legacy code.",
+    point2: "Front-end technologies: jQuery, MVC architecture, Vanilla JS, HTML5, CSS3.",
+    point3: "Back-end technologies: C#, SQL, REST APIs",
+    point4: `Projects include:
+            o	Vacation search engine with Sabre API.
+            o	Android WebView app.
+            o	Recruitment manager (Web app).
+            `
+  }]
+}, {
+  title: "COO at start-up company",
+  yearStart: "2016",
+  yearEND: "2017",
+  points: [{
+    point1: "Development and design input for company product.",
+    point2: "Indiegogo crowd-funding management (200% raised)."
+  }]
+}, {
+  title: "Israel Scouts Logistics Counsel",
+  yearStart: "2015",
+  yearEND: "2016",
+  points: [{
+    point1: "Deployment of large-scale operations including seminars and field trips.",
+    point2: "Public speaking.",
+    point3: "Educational youth counseling."
+  }]
+}];
+exports.Jobs = Jobs;
+const Education = [{
+  title: "H.I.T- B.Sc. Computer Science",
+  yearStart: "2017",
+  yearEand: "2020",
+  description: "C#, Python, C++, Java, OpenGL & more."
+}, {
+  title: "Self-Tought",
+  yearStart: "2017",
+  yearEand: "Today",
+  description: "ReactJS, NodeJS, AWS, HTML, jQuery & more"
+}];
+exports.Education = Education;
+const Military = [{
+  title: "Commander of special systems at unit 217",
+  yearStart: "2011",
+  yearEnd: "2014",
+  points: [{
+    point1: "Hands-on experience with newest IDF technologies in testing and operations including GPS and recording devices.",
+    point2: "Qualification of advanced, confidential weapon systems.",
+    point3: "Providing immediate solutions for operational needs."
+  }]
+}];
+exports.Military = Military;
+const Languages = [{
+  language: "Hebrew",
+  level: "Native speaker"
+}, {
+  language: "English",
+  level: "Native speaker"
+}, {
+  language: "Japanese",
+  level: "Conversation level"
+}];
+exports.Languages = Languages;
+},{}],"App/components/TimelineItem.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TimelineLanguageItem = exports.TimelineMilitaryItem = exports.TimelineEducationItem = exports.TimelineJobItem = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Typography = require("./Typography");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const TimelineJob = _styledComponents.default.div``;
+const TimelineJobContent = _styledComponents.default.div``;
+const TimelineEducation = _styledComponents.default.div``;
+const TimelineEducationContent = _styledComponents.default.div``;
+const TimelineMilitary = _styledComponents.default.div``;
+const TimelineMilitaryContent = _styledComponents.default.div``;
+const TimelineLanguages = _styledComponents.default.div``;
+const TimelineLanguagesContent = _styledComponents.default.div``;
+
+const TimelineJobItem = ({
+  Jobs
+}) => {
+  return _react.default.createElement(TimelineJob, null, _react.default.createElement(TimelineJobContent, null, _react.default.createElement(_Typography.Text, null, Jobs.title), _react.default.createElement(_Typography.Text, null, Jobs.yearStart), _react.default.createElement(_Typography.Text, null, Jobs.yearEnd), Jobs.points.map(point => {
+    _react.default.createElement(_Typography.Text, null, point);
+  })));
+};
+
+exports.TimelineJobItem = TimelineJobItem;
+
+const TimelineEducationItem = ({
+  Education
+}) => {
+  return _react.default.createElement(TimelineEducation, null, _react.default.createElement(TimelineEducationContent, null, _react.default.createElement(_Typography.Text, null, Education.title), _react.default.createElement(_Typography.Text, null, Education.yearStart), _react.default.createElement(_Typography.Text, null, Education.yearEnd), _react.default.createElement(_Typography.Text, null, Education.description)));
+};
+
+exports.TimelineEducationItem = TimelineEducationItem;
+
+const TimelineMilitaryItem = ({
+  Military
+}) => {
+  return _react.default.createElement(TimelineMilitary, null, _react.default.createElement(TimelineMilitaryContent, null, _react.default.createElement(_Typography.Text, null, Military.title), _react.default.createElement(_Typography.Text, null, Military.yearStart), _react.default.createElement(_Typography.Text, null, Military.yearEnd), Military.points.map(point => {
+    _react.default.createElement(_Typography.Text, null, point);
+  })));
+};
+
+exports.TimelineMilitaryItem = TimelineMilitaryItem;
+
+const TimelineLanguageItem = ({
+  Languages
+}) => {
+  return _react.default.createElement(TimelineLanguages, null, _react.default.createElement(TimelineLanguagesContent, null, _react.default.createElement(_Typography.Text, null, Languages.language), _react.default.createElement(_Typography.Text, null, Languages.level)));
+};
+
+exports.TimelineLanguageItem = TimelineLanguageItem;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Typography":"App/components/Typography.js"}],"App/components/Timeline.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35670,6 +35827,78 @@ exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Error = _interopRequireDefault(require("./Error"));
+
+var _data = require("../Data/data");
+
+var _TimelineItem = require("./TimelineItem");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const TimelineContainer = _styledComponents.default.div``;
+
+function TimelineItem(props) {
+  switch (props.type) {
+    case "Jobs":
+      return _data.Jobs.map((Jobs, idx) => _react.default.createElement(_TimelineItem.TimelineJobItem, {
+        Jobs: Jobs,
+        key: idx
+      }));
+
+    case "Education":
+      return _data.Education.map((Education, idx) => _react.default.createElement(_TimelineItem.TimelineEducationItem, {
+        Education: Education,
+        key: idx
+      }));
+
+    case "Military":
+      return _data.Military.map((Military, idx) => _react.default.createElement(_TimelineItem.TimelineMilitaryItem, {
+        Military: Military,
+        key: idx
+      }));
+
+    case "Language":
+      return _data.Languages.map((Languages, idx) => _react.default.createElement(_TimelineItem.TimelineLanguageItem, {
+        Languages: Languages,
+        key: idx
+      }));
+
+    default:
+      return _react.default.createElement(_Error.default, null);
+  }
+}
+
+class Timeline extends _react.default.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      type: props.type
+    };
+  }
+
+  render() {
+    return _react.default.createElement(TimelineContainer, null, _react.default.createElement(TimelineItem, {
+      type: this.props.type
+    }));
+  }
+
+}
+
+exports.default = Timeline;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Error":"App/components/Error.js","../Data/data":"App/Data/data.js","./TimelineItem":"App/components/TimelineItem.js"}],"App/pages/Experience.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Timeline = _interopRequireDefault(require("../components/Timeline"));
 
 var _Container = _interopRequireDefault(require("../components/Container"));
 
@@ -35685,7 +35914,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Import Link component
 // Import Section component
 // Import typography components
-const PortfolioWrapper = (0, _styledComponents.default)(_Section.default)`
+const ExperienceWrapper = (0, _styledComponents.default)(_Section.default)`
   padding-top: 120px;
   padding-bottom: 80px;
 `;
@@ -35759,71 +35988,25 @@ const PortfolioItemThumbnail = _styledComponents.default.img`
   object-fit: contain;
 `;
 
-class Portfolio extends _react.default.Component {
+class Experience extends _react.default.Component {
   render() {
-    return _react.default.createElement(PortfolioWrapper, null, _react.default.createElement(_Container.default, null, _react.default.createElement(_Typography.Subheading, null, "Thomas Paine"), _react.default.createElement(_Typography.Heading, null, "My work"), _react.default.createElement(_Typography.Text, null, "Selected examples of my work. If you want to see more, drop me an email."), _react.default.createElement(PortfolioGrid, null, _react.default.createElement(PortfolioItem, {
-      href: ""
-    }, _react.default.createElement(PortfolioItemThumbnail, {
-      src: "https://source.unsplash.com/z4CAuzwaXrM/600x600",
-      srcSet: "https://source.unsplash.com/z4CAuzwaXrM/600x600 1x, https://source.unsplash.com/z4CAuzwaXrM/1200x1200 2x",
-      alt: "Example of work"
-    })), _react.default.createElement(PortfolioItem, {
-      href: ""
-    }, _react.default.createElement(PortfolioItemThumbnail, {
-      src: "https://source.unsplash.com/-aDl1z8_nGY/600x600",
-      srcSet: "https://source.unsplash.com/-aDl1z8_nGY/600x600 1x, https://source.unsplash.com/-aDl1z8_nGY/1200x1200 2x",
-      alt: "Example of work"
-    })), _react.default.createElement(PortfolioItem, {
-      href: ""
-    }, _react.default.createElement(PortfolioItemThumbnail, {
-      src: "https://source.unsplash.com/qvEwMfUX_DM/600x600",
-      srcSet: "https://source.unsplash.com/qvEwMfUX_DM/600x600 1x, https://source.unsplash.com/qvEwMfUX_DM/1200x1200 2x",
-      alt: "Example of work"
-    })), _react.default.createElement(PortfolioItem, {
-      href: ""
-    }, _react.default.createElement(PortfolioItemThumbnail, {
-      src: "https://source.unsplash.com/9QjbejABFn8/600x600",
-      srcSet: "https://source.unsplash.com/9QjbejABFn8/600x600 1x, https://source.unsplash.com/9QjbejABFn8/1200x1200 2x",
-      alt: "Example of work"
-    })), _react.default.createElement(PortfolioItem, {
-      href: ""
-    }, _react.default.createElement(PortfolioItemThumbnail, {
-      src: "https://source.unsplash.com/cDD83wV627U/600x600",
-      srcSet: "https://source.unsplash.com/cDD83wV627U/600x600 1x, https://source.unsplash.com/cDD83wV627U/1200x1200 2x",
-      alt: "Example of work"
-    })), _react.default.createElement(PortfolioItem, {
-      href: ""
-    }, _react.default.createElement(PortfolioItemThumbnail, {
-      src: "https://source.unsplash.com/KDYcgCEoFcY/600x600",
-      srcSet: "https://source.unsplash.com/KDYcgCEoFcY/600x600 1x, https://source.unsplash.com/KDYcgCEoFcY/1200x1200 2x",
-      alt: "Example of work"
-    })), _react.default.createElement(PortfolioItem, {
-      href: ""
-    }, _react.default.createElement(PortfolioItemThumbnail, {
-      src: "https://source.unsplash.com/oKfCxcKnCo8/600x600",
-      srcSet: "https://source.unsplash.com/oKfCxcKnCo8/600x600 1x, https://source.unsplash.com/oKfCxcKnCo8/1200x1200 2x",
-      alt: "Example of work"
-    })), _react.default.createElement(PortfolioItem, {
-      href: ""
-    }, _react.default.createElement(PortfolioItemThumbnail, {
-      src: "https://source.unsplash.com/dClHqW-EfS8/600x600",
-      srcSet: "https://source.unsplash.com/dClHqW-EfS8/600x600 1x, https://source.unsplash.com/dClHqW-EfS8/1200x1200 2x",
-      alt: "Example of work"
-    })), _react.default.createElement(PortfolioItem, {
-      href: ""
-    }, _react.default.createElement(PortfolioItemThumbnail, {
-      src: "https://source.unsplash.com/74elF-XSsPg/600x600",
-      srcSet: "https://source.unsplash.com/74elF-XSsPg/600x600 1x, https://source.unsplash.com/74elF-XSsPg/1200x1200 2x",
-      alt: "Example of work"
-    }))), _react.default.createElement(_Typography.Text, null, "Let's get in touch:"), _react.default.createElement(_Link.default, {
+    return _react.default.createElement(ExperienceWrapper, null, _react.default.createElement(_Container.default, null, _react.default.createElement(_Typography.Subheading, null, "Tamuz Paran"), _react.default.createElement(_Typography.Heading, null, "My Experience"), _react.default.createElement(_Timeline.default, {
+      type: "Jobs"
+    }), _react.default.createElement(_Timeline.default, {
+      type: "Military"
+    }), _react.default.createElement(_Timeline.default, {
+      type: "Education"
+    }), _react.default.createElement(_Timeline.default, {
+      type: "Language"
+    }), _react.default.createElement(_Typography.Text, null, "Let's get in touch:"), _react.default.createElement(_Link.default, {
       href: "mailto:tamuzp@gmail.com"
     }, "tamuzp@gmail.com")));
   }
 
 }
 
-exports.default = Portfolio;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../components/Container":"App/components/Container.js","../components/Link":"App/components/Link.js","../components/Section":"App/components/Section.js","../components/Typography":"App/components/Typography.js"}],"../node_modules/dom-helpers/esm/hasClass.js":[function(require,module,exports) {
+exports.default = Experience;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../components/Timeline":"App/components/Timeline.js","../components/Container":"App/components/Container.js","../components/Link":"App/components/Link.js","../components/Section":"App/components/Section.js","../components/Typography":"App/components/Typography.js"}],"../node_modules/dom-helpers/esm/hasClass.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38181,7 +38364,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58115" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50399" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
