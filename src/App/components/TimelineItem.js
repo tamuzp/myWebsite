@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Heading, Subheading, Text } from './Typography'
+import { render } from '@testing-library/react'
 
 
 const TimelineJob = styled.div``
@@ -27,8 +28,10 @@ export const TimelineJobItem = ({ Jobs }) => {
                 <Text>{Jobs.title}</Text>
                 <Text>{Jobs.yearStart}</Text>
                 <Text>{Jobs.yearEnd}</Text>
-                {Jobs.points.map((point) => {
-                    <Text>{point}</Text>
+                {Jobs.points.map((point, i) => {
+                    return (
+                        <Text key={i}>{point}</Text>
+                    )
                 })}
             </TimelineJobContent>
         </TimelineJob>
@@ -55,8 +58,10 @@ export const TimelineMilitaryItem = ({ Military }) => {
                 <Text>{Military.title}</Text>
                 <Text>{Military.yearStart}</Text>
                 <Text>{Military.yearEnd}</Text>
-                {Military.points.map((point) => {
-                    <Text>{point}</Text>
+                {Military.points.map((point, i) => {
+                    return (
+                        <Text key={i}>{point}</Text>
+                    )
                 })}
             </TimelineMilitaryContent>
         </TimelineMilitary>

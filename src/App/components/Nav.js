@@ -56,7 +56,7 @@ const NavList = styled.div`
     max-height: 1000px;
     
     @media (min-width: 470px) {
-        padding: 38px;
+        padding: 38px 38px 0 0;
     }
 
     @media (max-width: 479px) {
@@ -107,19 +107,6 @@ const NavButton = styled(Button)`
     }
 `
 
-function MenuItem(props) {
-    return (
-        <NavItem>
-            <NavLink
-                exact
-                to={props.title === "Home" ? "/" : "/" + props.title}
-                onClick={props.onClick}
-                key={props.i}
-            >{props.title}</NavLink>
-        </NavItem>
-    )
-}
-
 
 export default class Nav extends React.Component {
     constructor(props) {
@@ -168,6 +155,19 @@ export default class Nav extends React.Component {
         }
     }
 
+    MenuItem(props) {
+        return (
+            <NavItem>
+                <NavLink
+                    exact
+                    to={props.title === "Home" ? "/" : "/" + props.title}
+                    onClick={props.onClick}
+                    key={props.i}
+                >{props.title}</NavLink>
+            </NavItem>
+        )
+    }
+
     render() {
         return (
             <Header>
@@ -181,7 +181,7 @@ export default class Nav extends React.Component {
                     >
                         <NavList>
                             {this.state.navMenu.map((title, i) => (
-                                <MenuItem in={this.state.show} title={title} onClick={this.toggleMenu} key={i} />
+                                <this.MenuItem title={title} onClick={() => {this.toggleMenu}} key={i} />
                             ))}
                         </NavList>
                     </CSSTransition>

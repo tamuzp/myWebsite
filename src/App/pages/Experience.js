@@ -15,98 +15,101 @@ import Section from '../components/Section'
 // Import typography components
 import { Heading, Subheading, Text } from '../components/Typography'
 
-const ExperienceWrapper = styled(Section)`
-  padding-top: 120px;
-  padding-bottom: 80px;
-`
-const PortfolioGrid = styled.div`
-  padding-bottom: 32px;
+const ExperienceWrapper = styled(Section)``
+
+const MenuWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px 10px 0 10px;
 `
 
-const PortfolioItem = styled.a`
-  display: block;
-  cursor: pointer;
-  width: 100%;
-  transition: opacity .25s ease-in-out;
+const MenuItem = styled.div`
+  padding: 10px;
+  border-radius: 25px 25px 0 0;
+  background-color: ${props => props.color || "#fff"};
+  color: #fff;
+  transform: scale(1);
+  box-shadow:none;
+  box-shadow:3px -2px 3px 0px rgba(0,0,0,0.25);
+  transition: margin .2s; 
 
   &:focus,
   &:hover {
-    opacity: .5;
-  }
-
-  @media (max-width: 767px) {
-    &:nth-child(n+2) {
-      margin-top: 16px;
-    }
-  }
-
-  @media (min-width: 768px) and (max-width: 991px) {
-    width: calc(50% - 32px);
-
-    &:nth-child(odd) {
-      margin-right: 32px;
-    }
-
-    &:nth-child(even) {
-      margin-left: 32px;
-    }
-
-    &:nth-child(n+3) {
-      margin-top: 48px;
-    }
-  }
-
-  @media (min-width: 992px) {
-    width: calc(33.33333% - 32px);
-
-    &:first-child,
-    &:nth-child(4),
-    &:nth-child(7) {
-      margin-right: 32px;
-    }
-
-    &:nth-child(2),
-    &:nth-child(4),
-    &:nth-child(8), {
-      margin-left: 16px;
-      margin-right: 16px;
-    }
-
-    &:nth-child(3),
-    &:nth-child(6),
-    &:last-child {
-      margin-left: 32px;
-    }
-
-    &:nth-child(n+4) {
-      margin-top: 24px;
-    }
+    cursor: pointer;
+    margin-top: -10px;
+    opacity:1;
   }
 `
 
-const PortfolioItemThumbnail = styled.img`
-  max-width: 100%;
-  object-fit: contain;
+const MenuText = styled.div`
+  font-family: arial;
+  font-size: 32px;
+  width: 180px;
+  text-align: center;
 `
+
+const ExpMenu = styled.div``
+
+
 
 export default class Experience extends React.Component {
-  render () {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      curSection: "Jobs",
+      curColor: "#9F87AF",
+      menu: [
+        {
+        title: "Jobs", 
+        color: "#9F87AF"
+      },
+      {
+        title: "Education",
+        color: "#004E64"
+      },
+      {
+        title: "Military", 
+        color: "#00A5CF"
+      },
+      {
+        title: "Language",
+        color: "#62D0AD"
+      }
+    ]
+    }
+
+    this.SectionNav = this.SectionNav.bind(this)
+  }
+
+  SectionNav(item) {
+    this.setState({
+      curSection: item.title,
+      curColor: item.color
+    })
+  }
+
+  ExpNav(props) {
+    return (
+      <MenuItem onClick={props.onClick} color={props.color}>
+        <MenuText>{props.title}</MenuText>
+      </MenuItem>
+    )
+  }
+
+  render() {
     return (
       <ExperienceWrapper>
         <Container>
-          <Subheading>Tamuz Paran</Subheading>
+          <Subheading>My Experience</Subheading>
 
-          <Heading>My Experience</Heading>
-
-          <Timeline type="Jobs"/>
-
-          <Timeline type="Military"/>
-
-          <Timeline type="Education"/>
-
-          <Timeline type="Language"/>
+          <MenuWrapper>
+            {this.state.menu.map((item, i) => (
+              <this.ExpNav title={item.title} key={i} color={item.color} onClick={() => { this.SectionNav(item) }} />
+            ))}
+          </MenuWrapper>
+        
+          <Timeline type={this.state.curSection} color={this.state.curColor}/>
 
           <Text>Let's get in touch:</Text>
 

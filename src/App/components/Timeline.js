@@ -4,7 +4,10 @@ import ErrorDiv from './Error'
 import { Jobs, Education, Languages, Military } from '../Data/data'
 import { TimelineJobItem, TimelineEducationItem, TimelineMilitaryItem, TimelineLanguageItem } from './TimelineItem'
 
-const TimelineContainer = styled.div``
+const TimelineContainer = styled.div`
+    background-color: ${props => props.color || "#fff"};
+    box-shadow: 3px -2px 5px 0px rgba(0,0,0,0.25);
+`
 
 function TimelineItem(props){
     switch (props.type) {
@@ -34,7 +37,8 @@ export default class Timeline extends React.Component {
         super(props)
 
         this.state = {
-            type: props.type
+            type: props.type,
+            color: props.color
         }
         
     }
@@ -42,7 +46,7 @@ export default class Timeline extends React.Component {
     render() {
 
         return (
-            <TimelineContainer>
+            <TimelineContainer color={this.props.color}>
                 <TimelineItem type={this.props.type}/>
             </TimelineContainer>
         )
