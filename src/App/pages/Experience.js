@@ -79,10 +79,10 @@ export default class Experience extends React.Component {
     ]
     }
 
-    this.SectionNav = this.SectionNav.bind(this)
+    this.setSection = this.setSection.bind(this)
   }
 
-  SectionNav(item) {
+  setSection(item) {
     this.setState({
       curSection: item.title,
       curColor: item.color
@@ -105,7 +105,7 @@ export default class Experience extends React.Component {
 
           <MenuWrapper>
             {this.state.menu.map((item, i) => (
-              <this.ExpNav title={item.title} key={i} color={item.color} onClick={() => { this.SectionNav(item) }} />
+              <this.ExpNav title={item.title} key={i} color={item.color} onClick={() => { this.setSection(item) }} />
             ))}
           </MenuWrapper>
         

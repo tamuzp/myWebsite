@@ -54985,10 +54985,10 @@ class Experience extends _react.default.Component {
         color: "#62D0AD"
       }]
     };
-    this.SectionNav = this.SectionNav.bind(this);
+    this.setSection = this.setSection.bind(this);
   }
 
-  SectionNav(item) {
+  setSection(item) {
     this.setState({
       curSection: item.title,
       curColor: item.color
@@ -55008,7 +55008,7 @@ class Experience extends _react.default.Component {
       key: i,
       color: item.color,
       onClick: () => {
-        this.SectionNav(item);
+        this.setSection(item);
       }
     }))), _react.default.createElement(_Timeline.default, {
       type: this.state.curSection,
@@ -57380,7 +57380,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64832" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60380" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
