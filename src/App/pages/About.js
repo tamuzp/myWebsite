@@ -18,7 +18,7 @@ export default class About extends React.Component {
     return (
       <Section centered>
         <Container>
-          <Subheading>Thomas Paine</Subheading>
+          <Subheading>Tamuz Paran</Subheading>
 
           <Heading>About Me</Heading>
 
