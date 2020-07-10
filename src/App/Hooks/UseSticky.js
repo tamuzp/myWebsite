@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react"
 
-function useSticky() {
+function UseSticky() {
   const [isSticky, setSticky] = useState(false)
   const element = useRef(null)
 
