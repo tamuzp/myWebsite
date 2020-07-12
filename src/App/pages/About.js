@@ -22,7 +22,7 @@ export default class About extends React.Component {
 
           <Heading>About Me</Heading>
 
-          <Text>placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder </Text>
+          <Text>Testing of new CD environment with github actions</Text>
 
           <Text>placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder </Text>
 

@@ -35422,7 +35422,7 @@ class About extends _react.default.Component {
   render() {
     return _react.default.createElement(_Section.default, {
       centered: true
-    }, _react.default.createElement(_Container.default, null, _react.default.createElement(_Typography.Subheading, null, "Thomas Paine"), _react.default.createElement(_Typography.Heading, null, "About Me"), _react.default.createElement(_Typography.Text, null, "placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder "), _react.default.createElement(_Typography.Text, null, "placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder "), _react.default.createElement("a", {
+    }, _react.default.createElement(_Container.default, null, _react.default.createElement(_Typography.Subheading, null, "Tamuz Paran"), _react.default.createElement(_Typography.Heading, null, "About Me"), _react.default.createElement(_Typography.Text, null, "Testing of new CD environment with github actions"), _react.default.createElement(_Typography.Text, null, "placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder "), _react.default.createElement("a", {
       href: "mailto:tamuzp@gmail.com"
     }, "tamuzp@gmail.com")));
   }
@@ -57380,7 +57380,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54091" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51269" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
