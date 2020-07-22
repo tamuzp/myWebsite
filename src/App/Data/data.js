@@ -2,7 +2,7 @@ export const Jobs = [
     {
         title: "Full stack AWS project for start-up",
         yearStart: "2020",
-        yearEND: "2020",
+        yearEnd: "2020",
         points: [
             "ReactJS front-end, NodeJS back-end.",
             "MySQL Database (ERD & Server)."
@@ -11,7 +11,7 @@ export const Jobs = [
     {
         title: "Full stack developer at Tmura Information Systems",
         yearStart: "2018",
-        yearEND: "2019",
+        yearEnd: "2019",
         points: [
             "Maintenance of legacy code.",
             "Front-end technologies: jQuery, MVC architecture, Vanilla JS, HTML5, CSS3.",
@@ -26,7 +26,7 @@ export const Jobs = [
     {
         title: "COO at start-up company",
         yearStart: "2016",
-        yearEND: "2017",
+        yearEnd: "2017",
         points: [
             "Development and design input for company product.",
             "Indiegogo crowd-funding management (200% raised)."
@@ -35,7 +35,7 @@ export const Jobs = [
     {
         title: "Israel Scouts Logistics Counsel",
         yearStart: "2015",
-        yearEND: "2016",
+        yearEnd: "2016",
         points: [
             "Deployment of large-scale operations including seminars and field trips.",
             "Public speaking.",
@@ -48,13 +48,13 @@ export const Education = [
     {
         title:"H.I.T- B.Sc. Computer Science",
         yearStart:"2017",
-        yearEand:"2020",
+        yearEnd:"2020",
         description: "C#, Python, C++, Java, OpenGL & more."
     },
     {
         title:"Self-Tought",
         yearStart:"2017",
-        yearEand:"Today",
+        yearEnd:"Today",
         description: "ReactJS, NodeJS, AWS, HTML, jQuery & more"
     },
 ]

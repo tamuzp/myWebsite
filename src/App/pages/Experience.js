@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-
+import styled, { css } from 'styled-components'
+import { Fade } from '@material-ui/core'
 import Timeline from '../components/Timeline'
 
 // Import Container component
@@ -31,13 +31,21 @@ const MenuItem = styled.div`
   transform: scale(1);
   box-shadow:none;
   box-shadow:3px -2px 3px 0px rgba(0,0,0,0.25);
-  transition: margin .2s; 
+  transition: margin-top .35s; 
+
+  ${({selected}) => selected && css`
+    z-index: 999;
+  `}
 
   &:focus,
   &:hover {
     cursor: pointer;
     margin-top: -10px;
     opacity:1;
+  }
+
+  &:active{
+    margin-top: -20px;
   }
 `
 
@@ -46,55 +54,81 @@ const MenuText = styled.div`
   font-size: 32px;
   width: 180px;
   text-align: center;
+  user-select: none;
 `
 
 const ExpMenu = styled.div``
 
+const TimelineAnimator = styled.div`
+  position: absolute;
+  width: inherit;
+  box-shadow: 3px -2px 5px 0px rgba(0,0,0,0.25);
+  transition: opacity .2s, margin-top .35s;
+  overflow: hidden;
+  border-radius: 10px;
 
+  ${({ show }) => show && css`
+    margin-top: 0;
+    z-index: 1;
+    opacity: 1;
+  `};
+
+  ${ ({ show }) => !show && css`
+    margin-top: -10px;
+    z-index: 0;
+    opacity: 0;
+    height: auto;
+  `};
+`
 
 export default class Experience extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      firstSec: true,
       curSection: "Jobs",
       curColor: "#9F87AF",
+      altSection: null,
+      altColor: null,
       menu: [
         {
-        title: "Jobs", 
-        color: "#9F87AF"
-      },
-      {
-        title: "Education",
-        color: "#004E64"
-      },
-      {
-        title: "Military", 
-        color: "#00A5CF"
-      },
-      {
-        title: "Language",
-        color: "#62D0AD"
-      }
-    ]
+          title: "Jobs",
+          color: "#9F87AF"
+        },
+        {
+          title: "Education",
+          color: "#004E64"
+        },
+        {
+          title: "Military",
+          color: "#00A5CF"
+        },
+        {
+          title: "Language",
+          color: "#62D0AD"
+        }
+      ]
     }
 
     this.setSection = this.setSection.bind(this)
   }
 
   setSection(item) {
-    this.setState({
-      curSection: item.title,
-      curColor: item.color
-    })
-  }
-
-  ExpNav(props) {
-    return (
-      <MenuItem onClick={props.onClick} color={props.color}>
-        <MenuText>{props.title}</MenuText>
-      </MenuItem>
-    )
+    if (this.state.firstSec && this.state.curSection !== item.title) {
+      this.setState({
+        firstSec: false,
+        altSection: item.title,
+        altColor: item.color
+      })
+    }
+    else if (this.state.altSection !== item.title) {
+      this.setState({
+        firstSec: true,
+        curSection: item.title,
+        curColor: item.color
+      })
+    }
   }
 
   render() {
@@ -105,11 +139,29 @@ export default class Experience extends React.Component {
 
           <MenuWrapper>
             {this.state.menu.map((item, i) => (
-              <this.ExpNav title={item.title} key={i} color={item.color} onClick={() => { this.setSection(item) }} />
+              <MenuItem
+                onClick={() => { this.setSection(item) }}
+                color={item.color}
+                key={i}
+                selected={
+                  (this.state.firstSec && this.state.curSection === item.title)
+                  ||
+                  (!this.state.firstSec && this.state.altSection === item.title)
+                  ?
+                  true:false
+                }>
+                <MenuText>{item.title}</MenuText>
+              </MenuItem>
             ))}
           </MenuWrapper>
-        
-          <Timeline type={this.state.curSection} color={this.state.curColor}/>
+
+          <TimelineAnimator show={this.state.firstSec}>
+            <Timeline type={this.state.curSection} color={this.state.curColor} />
+          </TimelineAnimator>
+
+          <TimelineAnimator show={!this.state.firstSec}>
+            <Timeline type={this.state.altSection} color={this.state.altColor} />
+          </TimelineAnimator>
 
           <Text>Let's get in touch:</Text>
 
