@@ -1,15 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import ErrorDiv from './Error'
-import SimpleBar from 'simplebar-react'
-import 'simplebar/dist/simplebar.min.css'
 import { Jobs, Education, Languages, Military } from '../Data/data'
 import { TimelineJobItem, TimelineEducationItem, TimelineMilitaryItem, TimelineLanguageItem } from './TimelineItem'
 
 const TimelineContainer = styled.div`
     background-color: ${props => props.color || "#fff"};
-    overflow: hidden;
-    
+    overflow: auto;
+    max-height: 700px;
 `
 
 function TimelineItem(props) {
@@ -44,11 +42,7 @@ export default class Timeline extends React.Component {
     render() {
         return (
             <TimelineContainer color={this.props.color}>
-                <SimpleBar style={{ maxHeight: 700 }}>
-                    <div>
-                        <TimelineItem type={this.props.type} />
-                    </div>
-                </SimpleBar>
+                <TimelineItem type={this.props.type} />
             </TimelineContainer>
         )
     }

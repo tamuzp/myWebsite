@@ -6,12 +6,11 @@ import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faCaretRight)
 
-const AwesomeIcon = ({ icon, size = "", rotation = "", flip = "", animate = ""}) => (
+const AwesomeIcon = ({ icon, size = "", rotation = 0, flip = "", animate = ""}) => (
     <FontAwesomeIcon 
         icon={["fas", icon]} 
         size={size} 
         rotation={rotation}
-        flip={flip}
         {...animate}/>
 )
 

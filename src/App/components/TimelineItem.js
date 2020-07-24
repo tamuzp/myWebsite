@@ -1,21 +1,65 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react'
+import styled, { css, keyframes } from 'styled-components'
 import AwesomeIcon from './AwesomeIcon'
 import { Heading, Subheading, Text } from './Typography'
 import { render } from '@testing-library/react'
 
+const growShrink = keyframes`
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.01);
+    }
+    100%{
+        transform: scale(1);
+    }
+`
 
 const TimelineJob = styled.div`
-display: flex;
-margin: 10px auto 10px auto;
+    display: flex;
+    margin: 10px auto 10px auto;
 `
 
 const TimelineJobContent = styled.div`
-background-color: #fff;
-border-radius: 30px 10px 30px 10px;
-    padding: 15px 10px;
+    background-color: #fff;
+    border-radius: 30px 10px 30px 10px;
+    padding: 15px 10px 0;
     margin: 20px auto auto 0;
-    height: 55px;
+    max-height: 45px;
+
+    transition: all .3s ease-in-out;
+    overflow:hidden;
+    white-space: nowrap;
+
+    svg{
+        transition: transform .3s;
+        margin-right: 5px;
+        
+        ${({ open }) => open && css`
+        transform: rotate(90deg);
+      `}
+    }
+
+    /*${({ open }) => !open && css`
+        &:hover{
+            animation: ${growShrink} .2s ease-in-out;
+        }    
+    `}*/
+
+    ${({ open }) => open && css`
+      max-height: 200px;
+
+    ${Points}{
+      display: block;
+      max-width: 800px;
+    }
+
+    svg{
+        transform: rotate(90deg);
+    }
+    `}
+
 `
 
 const TimelineEducation = styled.div``
@@ -54,16 +98,13 @@ const Line = styled.div`
     width: 50px;
     border: 2px solid;
     height: 0;
-    margin: auto 0 auto 0;
+    margin: 50px 0 auto 0;
 `
 
 const Title = styled.div`
     display: flex;
     line-height: 30px;
-    height: 30px;
-    svg{
-        margin-right: 5px;
-    }
+    
   ${Text}{
     font-weight: bold;
   }
@@ -73,18 +114,22 @@ const Title = styled.div`
   }
 `
 
-const ToExpand = styled.div`
-  height: 0;
-  display: none;
+const Points = styled.div`
+  max-width: 0px;
 
-  ${({show}) => show && css`
-    height: 100px;
-    opacity: 1;
-  `}
+  transition: all .3s;
+  ${Text}{
+      font-size:18px;
+  }
 `
 
+// function openItem(){
+
+// }
 
 export const TimelineJobItem = ({ Jobs }) => {
+    const [open, setOpen] = useState(false)
+
     return (
         <TimelineJob>
             <Year>
@@ -100,22 +145,22 @@ export const TimelineJobItem = ({ Jobs }) => {
                 }
             </Year>
             <Line></Line>
-            <TimelineJobContent>
-                <Title>
-                    <AwesomeIcon icon="caret-right" size="2x"/>
+            <TimelineJobContent open={open}>
+                <Title onClick={() => setOpen(!open)}>
+                    <AwesomeIcon icon="caret-right" size="2x" />
                     <Text>
                         {Jobs.title}
                     </Text>
                 </Title>
-                <ToExpand>
-                {Jobs.points.map((point, i) => {
-                    return (
-                        <Point key={i}>
-                            <Text>{point}</Text>
-                        </Point>
-                    )
-                })}
-                </ToExpand>
+                <Points>
+                    {Jobs.points.map((point, i) => {
+                        return (
+                            <Point key={i}>
+                                <Text>{point}</Text>
+                            </Point>
+                        )
+                    })}
+                </Points>
             </TimelineJobContent>
         </TimelineJob>
     )
