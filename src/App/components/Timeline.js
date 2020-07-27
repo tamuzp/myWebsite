@@ -7,7 +7,27 @@ import { TimelineJobItem, TimelineEducationItem, TimelineMilitaryItem, TimelineL
 const TimelineContainer = styled.div`
     background-color: ${props => props.color || "#fff"};
     overflow: auto;
-    max-height: 700px;
+    height: 700px;
+    /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: ${props => props.scrollbarTrack || "#f1f1f1"}; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: ${props => props.scrollbarThumb || "#888"}; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: ${props => props.scrollbarHover || "#555"}; 
+}
+
 `
 
 function TimelineItem(props) {
@@ -36,12 +56,28 @@ function TimelineItem(props) {
 export default class Timeline extends React.Component {
     constructor(props) {
         super(props)
+    }
 
+    shiftColor(color, val) {
+        if (color) {
+            let valArr = color.match(/\d+/g).map(Number)
+            let newArr = valArr.map((color, i) => {
+                return color + val
+            })
+            return ("rgb(" + newArr[0] + "," + newArr[1] + "," + newArr[2] + ")")
+        } else {
+            return null
+        }
     }
 
     render() {
         return (
-            <TimelineContainer color={this.props.color}>
+            <TimelineContainer
+                color={this.props.color}
+                scrollbarTrack={this.shiftColor(this.props.color, 30)}
+                scrollbarThumb={this.shiftColor(this.props.color, -30)}
+                scrollbarHover={this.shiftColor(this.props.color, -50)}
+            >
                 <TimelineItem type={this.props.type} />
             </TimelineContainer>
         )

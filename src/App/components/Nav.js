@@ -3,9 +3,10 @@ import styled, { css } from 'styled-components'
 import Button from './Button'
 import { NavLink } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import Collapse from '@material-ui/core/Collapse'
+
 
 const Header = styled.header`
-    posittion: fixed;
     top: 0;
     left: 0;
     z-index: 999;
@@ -27,24 +28,6 @@ const NavWrapper = styled.div`
         position: absolute;
         background-color: black;
         width: 100%;
-
-        .menu-enter {
-            max-height: 0;
-          }
-          
-          .menu-enter-active {
-            max-height: 1000px;
-            transition: all 1000ms;
-          }
-          
-          .menu-exit {
-            max-height: 1000px;
-          }
-          
-          .menu-exit-active {
-            max-height: 0;
-            transition: all 300ms;
-          }
     }
 `
 const NavList = styled.div`
@@ -53,7 +36,7 @@ const NavList = styled.div`
     overflow: hidden;
     flex-direction: row;
     justify-content: flex-end;
-    max-height: 1000px;
+    height: 150px;
     
     @media (min-width: 470px) {
         padding: 38px 38px 0 0;
@@ -61,7 +44,7 @@ const NavList = styled.div`
 
     @media (max-width: 479px) {
         display: block;
-        max-height: 1000px;
+        height: 150px;
         background-color: black;
     }
 `
@@ -115,44 +98,36 @@ export default class Nav extends React.Component {
 
         this.state = {
             isMobile: false,
-            show: true,
+            show: false,
             navMenu: ["Home", "About", "Contact", "Experience"]
         }
 
         this.toggleMenu = this.toggleMenu.bind(this)
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
-    
+
     componentDidMount() {
-      this.updateWindowDimensions();
-      window.addEventListener('resize', this.updateWindowDimensions);
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
     }
-    
+
     componentWillUnmount() {
-      window.removeEventListener('resize', this.updateWindowDimensions);
+        window.removeEventListener('resize', this.updateWindowDimensions);
     }
-    
+
     updateWindowDimensions() {
-        if(window.innerWidth < 479){
-            this.setState({
-                isMobile: true,
-                show: false
-            })     
-        }else{
-            this.setState({
-                isMobile: false,
-                show: true
-            })    
-        }
+        this.setState({
+            isMobile: window.innerWidth < 479 ? true : false
+        })
     }
 
 
     toggleMenu() {
-        if(this.state.isMobile){
+        // if (this.state.isMobile) {
             this.setState({
                 show: !this.state.show
             })
-        }
+        // }
     }
 
     MenuItem(props) {
@@ -173,18 +148,13 @@ export default class Nav extends React.Component {
             <Header>
                 <NavWrapper>
                     <NavButton onClick={this.toggleMenu}>Menu</NavButton>
-                    <CSSTransition
-                        in={this.state.show}
-                        classNames="menu"
-                        timeout={300}
-                        unmountOnExit
-                    >
+                    <Collapse in={this.state.show}>
                         <NavList>
                             {this.state.navMenu.map((title, i) => (
-                                <this.MenuItem title={title} onClick={() => {this.toggleMenu}} key={i} />
+                                <this.MenuItem title={title} onClick={() => {this.toggleMenu()}} key={i} />
                             ))}
                         </NavList>
-                    </CSSTransition>
+                    </Collapse>
                 </NavWrapper>
             </Header>
         )

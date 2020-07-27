@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Fade } from '@material-ui/core'
 import Timeline from '../components/Timeline'
+import ExperienceMenu from '../components/ExperienceMenu'
 
 // Import Container component
 import Container from '../components/Container'
@@ -32,6 +33,7 @@ const MenuItem = styled.div`
   box-shadow:none;
   box-shadow:3px -2px 3px 0px rgba(0,0,0,0.25);
   transition: margin-top .35s; 
+  z-index: ${props => props.zIndex || "1"};
 
   ${({selected}) => selected && css`
     z-index: 999;
@@ -47,6 +49,10 @@ const MenuItem = styled.div`
   &:active{
     margin-top: -20px;
   }
+  
+  &.testing{
+    position:absolute;
+  }
 `
 
 const MenuText = styled.div`
@@ -60,25 +66,29 @@ const MenuText = styled.div`
 const ExpMenu = styled.div``
 
 const TimelineAnimator = styled.div`
-  position: absolute;
-  width: inherit;
-  box-shadow: 3px -2px 5px 0px rgba(0,0,0,0.25);
-  transition: opacity .2s, margin-top .35s;
-  overflow: hidden;
-  border-radius: 10px;
+transition: opacity .2s, margin-top .35s;
+overflow: hidden;
+position: absolute;
+width: 100vw;
 
-  ${({ show }) => show && css`
-    margin-top: 0;
-    z-index: 1;
-    opacity: 1;
-  `};
+${({ show }) => show && css`
+margin-top: 0;
+z-index: 1;
+opacity: 1;
+`};
 
-  ${ ({ show }) => !show && css`
-    margin-top: -10px;
-    z-index: 0;
-    opacity: 0;
-    height: auto;
-  `};
+${ ({ show }) => !show && css`
+margin-top: -10px;
+z-index: 0;
+opacity: 0;
+height: auto;
+`};
+
+@media(min-width:480px){
+    width: inherit;
+    box-shadow: 3px -2px 5px 0px rgba(0,0,0,0.25);
+    border-radius: 10px;
+  }
 `
 
 export default class Experience extends React.Component {
@@ -88,48 +98,34 @@ export default class Experience extends React.Component {
     this.state = {
       firstSec: true,
       curSection: "Jobs",
-      curColor: "#9F87AF",
+      curColor: "rgb(159, 135, 175)",
       altSection: null,
       altColor: null,
-      menu: [
-        {
-          title: "Jobs",
-          color: "#9F87AF"
-        },
-        {
-          title: "Education",
-          color: "#004E64"
-        },
-        {
-          title: "Military",
-          color: "#00A5CF"
-        },
-        {
-          title: "Language",
-          color: "#62D0AD"
-        }
-      ]
+      selected: "Jobs"
     }
 
-    this.setSection = this.setSection.bind(this)
+    this.handleMenu = this.handleMenu.bind(this)
   }
 
-  setSection(item) {
+  handleMenu(item){
     if (this.state.firstSec && this.state.curSection !== item.title) {
       this.setState({
         firstSec: false,
         altSection: item.title,
-        altColor: item.color
+        altColor: item.color,
+        selected: item.title
       })
     }
     else if (this.state.altSection !== item.title) {
       this.setState({
         firstSec: true,
         curSection: item.title,
-        curColor: item.color
+        curColor: item.color,
+        selected: item.title
       })
     }
   }
+
 
   render() {
     return (
@@ -137,23 +133,7 @@ export default class Experience extends React.Component {
         <Container>
           <Subheading>My Experience</Subheading>
 
-          <MenuWrapper>
-            {this.state.menu.map((item, i) => (
-              <MenuItem
-                onClick={() => { this.setSection(item) }}
-                color={item.color}
-                key={i}
-                selected={
-                  (this.state.firstSec && this.state.curSection === item.title)
-                  ||
-                  (!this.state.firstSec && this.state.altSection === item.title)
-                  ?
-                  true:false
-                }>
-                <MenuText>{item.title}</MenuText>
-              </MenuItem>
-            ))}
-          </MenuWrapper>
+          <ExperienceMenu onSelectItem = {this.handleMenu} selected={this.state.selected}/>
 
           <TimelineAnimator show={this.state.firstSec}>
             <Timeline type={this.state.curSection} color={this.state.curColor} />

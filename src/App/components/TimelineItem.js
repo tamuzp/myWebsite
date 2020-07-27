@@ -22,15 +22,15 @@ const TimelineJob = styled.div`
 `
 
 const TimelineJobContent = styled.div`
-    background-color: #fff;
-    border-radius: 30px 10px 30px 10px;
-    padding: 15px 10px 0;
-    margin: 20px auto auto 0;
-    max-height: 45px;
-
+    max-height: 45px; 
     transition: all .3s ease-in-out;
-    overflow:hidden;
     white-space: nowrap;
+    
+    @media(max-width:480px){
+        white-space: unset;
+        margin: 3px auto auto 0;
+        max-width:65%;
+    }
 
     svg{
         transition: transform .3s;
@@ -50,7 +50,8 @@ const TimelineJobContent = styled.div`
     ${({ open }) => open && css`
       max-height: 200px;
 
-    ${Points}{
+    ${PointWrapper}{
+        max-height:250px;
       display: block;
       max-width: 800px;
     }
@@ -74,7 +75,15 @@ const TimelineLanguages = styled.div``
 
 const TimelineLanguagesContent = styled.div``
 
-const Point = styled.div``
+const Point = styled.div`
+padding: 10px 10px 0;
+margin: 0 auto;
+overflow: hidden;
+background-color: #fff;
+border-radius: 30px 10px 30px 10px;
+width: fit-content;
+
+`
 
 const Year = styled.div`
     border-radius: 50%;
@@ -87,38 +96,87 @@ const Year = styled.div`
     
     ${Text}{
         margin-top: 25px;
+        font-size: 21px;
     }
-
+    
     .single{
         margin-top: 37px;
     }
+    
+    @media(max-width:480px){
+        margin: 0 0 auto 10px;
+        width: 70px;
+        height: 70px;
+
+        ${Text}{
+            margin-top: 17px;
+            font-size:17px;
+        }
+        
+        .single{
+            margin-top: 26px;
+        }
+    }    
 `
 
-const Line = styled.div`
+const HorizintalLine = styled.div`
     width: 50px;
     border: 2px solid;
     height: 0;
     margin: 50px 0 auto 0;
+
+    @media(max-width:480px){
+        width:15px;
+        margin: 35px 0 auto 0;
+        }
+    
+`
+
+const VerticalLine = styled.div`
+    width: 0px;
+    border: 2px solid;
+    height: 20px;
+    margin: 0 auto 0 auto;
+
+    @media(max-width:480px){
+        width:15px;
+        margin: 35px 0 auto 0;
+        }
+    
 `
 
 const Title = styled.div`
+padding: 15px 10px 0;
+    margin: 20px auto auto 0;
+    overflow:hidden;
+background-color: #fff;
+    border-radius: 30px 10px 30px 10px;
     display: flex;
-    line-height: 30px;
     
-  ${Text}{
-    font-weight: bold;
-  }
+    
+    ${Text}{
+        position: relative;
+    top: 5px;
+        font-weight: bold;
+    }
 
-  &:hover{
-      cursor: pointer;
-  }
+    &:hover{
+        cursor: pointer;
+    }
+`
+
+const PointWrapper = styled.div`
+    height: 0;
+    overflow: hidden;
 `
 
 const Points = styled.div`
-  max-width: 0px;
+
 
   transition: all .3s;
   ${Text}{
+    position: relative;
+    top: 5px;
       font-size:18px;
   }
 `
@@ -144,7 +202,7 @@ export const TimelineJobItem = ({ Jobs }) => {
                     </Text>
                 }
             </Year>
-            <Line></Line>
+            <HorizintalLine></HorizintalLine>
             <TimelineJobContent open={open}>
                 <Title onClick={() => setOpen(!open)}>
                     <AwesomeIcon icon="caret-right" size="2x" />
@@ -155,9 +213,12 @@ export const TimelineJobItem = ({ Jobs }) => {
                 <Points>
                     {Jobs.points.map((point, i) => {
                         return (
-                            <Point key={i}>
-                                <Text>{point}</Text>
-                            </Point>
+                            <PointWrapper key={i} open={open}>
+                                <VerticalLine></VerticalLine>
+                                <Point>
+                                    <Text>{point}</Text>
+                                </Point>
+                            </PointWrapper>
                         )
                     })}
                 </Points>

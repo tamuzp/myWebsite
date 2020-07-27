@@ -3,6 +3,9 @@ import styled, { css } from 'styled-components'
 import Container from './Container'
 
 const Section = styled.section`
+    @media (max-width:480px){
+        margin-top: 70px;
+    }
     ${props => props.centered && css`
         position: relative;
         display: flex;
