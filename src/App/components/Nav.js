@@ -36,7 +36,6 @@ const NavList = styled.div`
     overflow: hidden;
     flex-direction: row;
     justify-content: flex-end;
-    height: 150px;
     
     @media (min-width: 470px) {
         padding: 38px 38px 0 0;
@@ -98,7 +97,7 @@ export default class Nav extends React.Component {
 
         this.state = {
             isMobile: false,
-            show: false,
+            show: true,
             navMenu: ["Home", "About", "Contact", "Experience"]
         }
 
@@ -123,11 +122,11 @@ export default class Nav extends React.Component {
 
 
     toggleMenu() {
-        // if (this.state.isMobile) {
+        if (this.state.isMobile) {
             this.setState({
                 show: !this.state.show
             })
-        // }
+        }
     }
 
     MenuItem(props) {

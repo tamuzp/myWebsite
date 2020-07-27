@@ -17,9 +17,9 @@ export const Jobs = [
             "Front-end technologies: jQuery, MVC architecture, Vanilla JS, HTML5, CSS3.",
             "Back-end technologies: C#, SQL, REST APIs",
             `Projects include:
-            o	Vacation search engine with Sabre API.
-            o	Android WebView app.
-            o	Recruitment manager (Web app).
+            \n o	Vacation search engine with Sabre API.
+            \n o	Android WebView app.
+            \n o	Recruitment manager (Web app).
             `
         ]
     },
@@ -87,3 +87,6 @@ export const Languages = [
     },
 ]
 
+export const AboutMe = [
+    
+]

@@ -22,10 +22,10 @@ const TimelineJob = styled.div`
 `
 
 const TimelineJobContent = styled.div`
-    max-height: 45px; 
     transition: all .3s ease-in-out;
     white-space: nowrap;
-    
+    max-width: 80%;
+
     @media(max-width:480px){
         white-space: unset;
         margin: 3px auto auto 0;
@@ -48,13 +48,6 @@ const TimelineJobContent = styled.div`
     `}*/
 
     ${({ open }) => open && css`
-      max-height: 200px;
-
-    ${PointWrapper}{
-        max-height:250px;
-      display: block;
-      max-width: 800px;
-    }
 
     svg{
         transform: rotate(90deg);
@@ -76,13 +69,17 @@ const TimelineLanguages = styled.div``
 const TimelineLanguagesContent = styled.div``
 
 const Point = styled.div`
-padding: 10px 10px 0;
-margin: 0 auto;
-overflow: hidden;
-background-color: #fff;
-border-radius: 30px 10px 30px 10px;
-width: fit-content;
+    padding: 10px 10px 0;
+    margin: 0 50px;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 30px 10px 30px 10px;
+    width: fit-content;
+    white-space: pre-wrap;
 
+    @media (max-width:480px){
+        margin: 0 5px 0 0;
+    }
 `
 
 const Year = styled.div`
@@ -136,24 +133,24 @@ const VerticalLine = styled.div`
     width: 0px;
     border: 2px solid;
     height: 20px;
-    margin: 0 auto 0 auto;
+    margin: 0 100px;
 
     @media(max-width:480px){
-        width:15px;
-        margin: 35px 0 auto 0;
-        }
+        height:15px;
+        margin: 0 50px;
+    }
     
 `
 
 const Title = styled.div`
-padding: 15px 10px 0;
+    padding: 15px 10px 0;
     margin: 20px auto auto 0;
-    overflow:hidden;
-background-color: #fff;
+    background-color: #fff;
     border-radius: 30px 10px 30px 10px;
     display: flex;
-    
-    
+    width: fit-content;
+    outline:0;
+    user-select: none;
     ${Text}{
         position: relative;
     top: 5px;
@@ -163,11 +160,28 @@ background-color: #fff;
     &:hover{
         cursor: pointer;
     }
+    
+    @media (max-width:480px){
+        margin: 5px auto auto 0;
+        padding: 10px 10px 5px;
+    }
 `
 
 const PointWrapper = styled.div`
-    height: 0;
+    max-height: 0;
+    /*max-width: 0;*/
     overflow: hidden;
+    opacity: 0;
+    transition: all .3s ease-in-out;
+
+    ${({open}) => open && css`{
+        max-height:300px;
+        display: block;
+        max-width: 800px;
+        opacity: 1;
+    }
+    `}
+    
 `
 
 const Points = styled.div`

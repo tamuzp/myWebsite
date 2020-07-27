@@ -7,7 +7,8 @@ import { TimelineJobItem, TimelineEducationItem, TimelineMilitaryItem, TimelineL
 const TimelineContainer = styled.div`
     background-color: ${props => props.color || "#fff"};
     overflow: auto;
-    height: 700px;
+    height: 650px;
+    padding: 20px;
     /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -28,6 +29,9 @@ const TimelineContainer = styled.div`
   background: ${props => props.scrollbarHover || "#555"}; 
 }
 
+@media(max-width:480px){
+    padding: 0;
+}
 `
 
 function TimelineItem(props) {
