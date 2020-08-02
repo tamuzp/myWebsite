@@ -17,7 +17,7 @@ export default class About extends React.Component {
   render () {
     return (
       <Section centered>
-        <Container>
+        <Container height={70}>
           <Subheading>Tamuz Paran</Subheading>
 
           <Heading>About Me</Heading>

@@ -87,6 +87,34 @@ export const Languages = [
     },
 ]
 
-export const AboutMe = [
-    
+export const AboutMe = 
+    {
+        fisrtName: "Tamuz",
+        lastName: "Paran",
+        phone:"+972 54 30 20 790",
+        email:"tamuzp@gmail.com"
+    }
+
+
+export const ExperienceMenuItems = [
+    {
+        title: "Jobs",
+        color: "rgb(159, 135, 175)"
+    },
+    {
+        title: "Education",
+        color: "rgb(0, 78, 100)"
+    },
+    {
+        title: "Military",
+        color: "rgb(0, 165, 207)"
+    },
+    {
+        title: "Language",
+        color: "rgb(98, 208, 173)"
+    },
+    {
+        title: "Experience",
+        color: "rgb(73, 53, 72)"
+    }
 ]

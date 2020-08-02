@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, HashRouter } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 
 import About from './pages/About'
 import Home from './pages/Home'
@@ -8,21 +9,55 @@ import Experience from './pages/Experience'
 
 import Nav from './components/Nav'
 
-export default class Main extends React.Component{
+const Parallax = styled.div`
+    perspective: 1px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+`
+  
+const ParallaxLayer = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    transform: ${props => props.base ? "translateZ(0)":"translateZ(-1px) scale(2)"};
+`
+
+const bgImg = require('../Assets/background.png')
+
+class SinglePage extends React.Component {
     render() {
         return (
-            <HashRouter>
-                <div className="wrapper">
-                    <Nav />
+            <div className="content">
+                <Home />
+                <About />
+                <Experience />
+                <Contact />
+            </div>
+        )
+    }
+}
 
-                    <div className="content">
-                        <Route exact={true} path="/" component={Home} />
-                        <Route path="/about" component={About} />
-                        <Route path="/contact" component={Contact} />
-                        <Route path="/experience" component={Experience} />
-                    </div>
-                </div>
-            </HashRouter>
+export default class Main extends React.Component {
+    render() {
+        return (
+            <Parallax>
+                <ParallaxLayer>
+                    <img src={bgImg}/>
+                </ParallaxLayer>
+                <ParallaxLayer base>
+                <HashRouter>
+                    {/* <Nav /> */}
+                        <Route exact={true} path="/" component={SinglePage} />
+                        <Route path="/about" component={SinglePage} />
+                        <Route path="/contact" component={SinglePage} />
+                        <Route path="/experience" component={SinglePage} />
+                </HashRouter>
+                </ParallaxLayer>
+            </Parallax>
         )
     }
 }

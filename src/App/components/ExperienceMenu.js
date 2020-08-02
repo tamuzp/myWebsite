@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Fade } from '@material-ui/core'
 import Timeline from '../components/Timeline'
+import { ExperienceMenuItems } from '../Data/data'
 
 // Import Container component
 import Container from '../components/Container'
@@ -95,24 +96,7 @@ export default class ExperienceMenu extends React.Component {
         super(props)
 
         this.state = {
-            menu: [
-                {
-                    title: "Jobs",
-                    color: "rgb(159, 135, 175)"
-                },
-                {
-                    title: "Education",
-                    color: "rgb(0, 78, 100)"
-                },
-                {
-                    title: "Military",
-                    color: "rgb(0, 165, 207)"
-                },
-                {
-                    title: "Language",
-                    color: "rgb(98, 208, 173)"
-                }
-            ]
+            menu: ExperienceMenuItems
         }
 
         this.setSection = this.setSection.bind(this)

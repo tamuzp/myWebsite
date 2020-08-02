@@ -7,13 +7,16 @@ const Section = styled.section`
         margin-top: 70px;
     }
     ${props => props.centered && css`
-        position: relative;
+        // position: absolute;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         height: 100%;
         flex-grow: 1;
+//         top: "50%",
+//   left: "50%",
+//   transform: "translate(-50%,-50%)"
     `}
 
     ${Container} {

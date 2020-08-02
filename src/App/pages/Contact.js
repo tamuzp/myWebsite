@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { AboutMe } from '../Data/data'
 
 // Import AwesomeIcon
 import AwesomeIcon from './../components/AwesomeIcon'
@@ -58,11 +59,11 @@ export default class Contact extends React.Component {
 
           <Text>I'm available for freelance work. If you are interested in a new project, collaboration, or just to chat, feel free to contact me.</Text>
 
-          <ContactLink href="mailto:email@example.com">email@example.com</ContactLink>
+          <ContactLink href={"mailto:" + AboutMe.email}>{AboutMe.email}</ContactLink>
 
           <Text>Follow me on the web:</Text>
 
-          <SocialMediaList>
+          {/* <SocialMediaList>
             <li>
               <Link href="">
                 <AwesomeIcon icon="twitter" />
@@ -98,7 +99,7 @@ export default class Contact extends React.Component {
                 <AwesomeIcon icon="codepen" />
               </Link>
             </li>
-          </SocialMediaList>
+          </SocialMediaList> */}
         </Container>
       </Section>
     )

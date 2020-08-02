@@ -5,6 +5,7 @@ const Container = styled.div`
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+    height: ${props => props.height || 100}vh;
 
     @media (max-width: 480px){
         padding: 0;

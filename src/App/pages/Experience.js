@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import { Fade } from '@material-ui/core'
 import Timeline from '../components/Timeline'
 import ExperienceMenu from '../components/ExperienceMenu'
+import {AboutMe} from '../Data/data'
 
 // Import Container component
 import Container from '../components/Container'
@@ -145,7 +146,7 @@ export default class Experience extends React.Component {
 
           <Text>Let's get in touch:</Text>
 
-          <Link href="mailto:tamuzp@gmail.com">tamuzp@gmail.com</Link>
+          <Link href={"mailto:" + AboutMe.email}>{AboutMe.email}</Link>
         </Container>
       </ExperienceWrapper>
     )
