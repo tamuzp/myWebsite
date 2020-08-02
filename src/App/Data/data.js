@@ -92,7 +92,17 @@ export const AboutMe =
         fisrtName: "Tamuz",
         lastName: "Paran",
         phone:"+972 54 30 20 790",
-        email:"tamuzp@gmail.com"
+        email:"tamuzp@gmail.com",
+        profession:"Web Developer",
+        facebook:"https://www.facebook.com/tamuzp",
+        linkedin:"https://www.linkedin.com/in/tamuzp/",
+        github:"https://github.com/tamuzp",
+        about_me:`My name is Tamuz Paran, I live in Israel, and I was raised in Japan.
+        \n I am fascinated by technology and gadgets from a young age, and consider it a hobby of mine.
+        \n I will soon complete my bachelor's degree in computer science, I'm autodidactic and resourceful,
+        \n and I don't shy away from a task that seems out of my league.
+        `,
+        contact:"Currently looking for a web developer position, but am also available for other projects or offers, feel free to contact me."
     }
 
 

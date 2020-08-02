@@ -14,10 +14,8 @@ const Section = styled.section`
         justify-content: center;
         height: 100%;
         flex-grow: 1;
-//         top: "50%",
-//   left: "50%",
-//   transform: "translate(-50%,-50%)"
     `}
+    background-color:${props => props.color};
 
     ${Container} {
         position: relative;

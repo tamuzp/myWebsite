@@ -23,7 +23,7 @@ const ParallaxLayer = styled.div`
     bottom: 0;
     left: 0;
 
-    transform: ${props => props.base ? "translateZ(0)":"translateZ(-1px) scale(2)"};
+    transform: ${props => props.base ? "translateZ(0)":"translateZ(-1px) scale(2.1)"};
 `
 
 const bgImg = require('../Assets/background.png')
@@ -44,20 +44,22 @@ class SinglePage extends React.Component {
 export default class Main extends React.Component {
     render() {
         return (
-            <Parallax>
+            <div className="wrapper">
+            <Nav />
+            <Parallax className="main-content">
                 <ParallaxLayer>
                     <img src={bgImg}/>
                 </ParallaxLayer>
                 <ParallaxLayer base>
-                <HashRouter>
-                    {/* <Nav /> */}
-                        <Route exact={true} path="/" component={SinglePage} />
-                        <Route path="/about" component={SinglePage} />
-                        <Route path="/contact" component={SinglePage} />
-                        <Route path="/experience" component={SinglePage} />
-                </HashRouter>
+                <div className="content">
+                <Home />
+                <About />
+                <Experience />
+                <Contact />
+            </div>
                 </ParallaxLayer>
             </Parallax>
+            </div>
         )
     }
 }

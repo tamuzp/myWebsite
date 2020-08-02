@@ -6,6 +6,7 @@ export const Heading = styled.h1`
     font-size: 36px;
     font-weight: bold;
     font-family: arial;
+    color: ${props => props.color || "black"};
 
     @media (min-width: 480px) {
         font-size: 48px;
@@ -48,7 +49,7 @@ export const Text = styled.p`
   margin-top: 0;
   font-size: 16px;
   font-family: arial;
-  color: ${props => props.color || "black"}
+  color: ${props => props.color || "black"};
 
 
   @media (min-width: 768px) {

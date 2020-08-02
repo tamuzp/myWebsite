@@ -27,7 +27,7 @@ const ContactLink = styled(Link)`
   }
 `
 
-const SocialMediaList = styled.ul`
+const ContactIcons = styled.ul`
   padding: 0;
   margin: 0;
 
@@ -53,53 +53,37 @@ const SocialMediaList = styled.ul`
 export default class Contact extends React.Component {
   render () {
     return (
-      <Section centered>
-        <Container>
-          <Heading>Say hello</Heading>
+      <Section centered id="Contact" color="#182b3db5">
+        <Container height={35} style={{paddingTop:"20px"}}>
+          <Heading color="#f3f5f5">Say hello</Heading>
 
-          <Text>I'm available for freelance work. If you are interested in a new project, collaboration, or just to chat, feel free to contact me.</Text>
+          <Text color="#f3f5f5">{AboutMe.contact}</Text>
 
-          <ContactLink href={"mailto:" + AboutMe.email}>{AboutMe.email}</ContactLink>
-
-          <Text>Follow me on the web:</Text>
-
-          {/* <SocialMediaList>
+          <ContactIcons>
             <li>
-              <Link href="">
-                <AwesomeIcon icon="twitter" />
+              <Link href={"mailto:" + AboutMe.email} target="_blank">
+                <AwesomeIcon icon="envelope" size="2x" color="#f3f5f5"/>
               </Link>
             </li>
 
             <li>
-              <Link href="">
-                <AwesomeIcon icon="linkedin" />
+              <Link href={AboutMe.facebook} target="_blank">
+                <AwesomeIcon prefix="fab" icon="facebook-square" size="2x" color="#f3f5f5"/>
               </Link>
             </li>
 
             <li>
-              <Link href="">
-                <AwesomeIcon icon="behance" />
+              <Link href={AboutMe.linkedin} target="_blank">
+                <AwesomeIcon prefix="fab" icon="linkedin" size="2x" color="#f3f5f5"/>
               </Link>
             </li>
 
             <li>
-              <Link href="">
-                <AwesomeIcon icon="dribbble" />
+              <Link href={AboutMe.github} target="_blank">
+                <AwesomeIcon prefix="fab" icon="github-square" size="2x" color="#f3f5f5"/>
               </Link>
             </li>
-
-            <li>
-              <Link href="">
-                <AwesomeIcon icon="github" />
-              </Link>
-            </li>
-
-            <li>
-              <Link href="">
-                <AwesomeIcon icon="codepen" />
-              </Link>
-            </li>
-          </SocialMediaList> */}
+          </ContactIcons>
         </Container>
       </Section>
     )

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router';
+import { AboutMe } from '../Data/data';
 
 // Import Button component
 import Button from './../components/Button'
@@ -12,7 +12,7 @@ import Container from './../components/Container'
 import Section from './../components/Section'
 
 // Import typography components
-import { Heading, Subheading } from './../components/Typography'
+import { Heading, Subheading, Text } from './../components/Typography'
 
 const HomeWrapper = styled(Section)`
   background-size: cover;
@@ -37,23 +37,38 @@ const HomeWrapper = styled(Section)`
 
   &::before {
     position: absolute;
-    top: 0;
+    top: 130px;
     left: 0;
     z-index: 1;
     content: '';
     width: 100%;
-    height: 100%;
+    height: 50%;
     background-color: rgba(0, 0, 0, .4);
   }
 
   ${Container} {
     color: #fff;
+    display: flex;
+    max-height:100%;
+    img{
+      border: 5px solid;
+      border-radius: 50%;
+      max-height:200px;
+      max-width:200px;
+    }
+    padding-top: 50vh;
   }
 
   ${Subheading} {
-    margin-bottom: 32px;
+    margin-left: 10px;
   }
 `
+
+const Summary = styled.div`
+  padding: 25px;
+`
+
+const myPic = require('../../Assets/pictureofme.png')
 
 // Using Button component but changing the element to 'a'
 const HomeButton = Button.withComponent('a')
@@ -61,13 +76,16 @@ const HomeButton = Button.withComponent('a')
 export default class Home extends React.Component {
   render () {
     return (
-      <HomeWrapper centered>
-        <Container height={80}>
-          <Heading>Tamuz Paran</Heading>
+      <HomeWrapper centered id="Home">
+        <Container height={100}>
+          
+            <img src={myPic}/>
 
-          <Subheading>Web Developer</Subheading>
+          <Summary>
+            <Heading color="#fff">{AboutMe.fisrtName} {AboutMe.lastName}</Heading>
+          <Subheading>{AboutMe.profession}</Subheading>
+          </Summary>
 
-          <HomeButton href="/portfolio">My work</HomeButton>
         </Container>
       </HomeWrapper>
     )

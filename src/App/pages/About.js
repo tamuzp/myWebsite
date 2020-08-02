@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import {AboutMe} from '../Data/data'
 
 // Import Container component
 import Container from './../components/Container'
@@ -13,20 +14,26 @@ import Section from './../components/Section'
 // Import typography components
 import { Heading, Subheading, Text } from './../components/Typography'
 
+const AboutMeWrapper = styled.div`
+  border-radius: 25px;
+  width: 100%;
+  background-color: #eaf2fa;
+  padding: 100px 50px;
+  box-shadow: 6px 6px 8px 4px rgba(0,0,0,0.15);
+`
+
 export default class About extends React.Component {
   render () {
     return (
-      <Section centered>
+      <Section centered id="About">
         <Container height={70}>
-          <Subheading>Tamuz Paran</Subheading>
 
-          <Heading>About Me</Heading>
+          <AboutMeWrapper>
+            <Heading>About Me</Heading>
+            <Text>{AboutMe.about_me}</Text>
+            <a href={"mailto:" + AboutMe.email}>{AboutMe.email}</a>
+          </AboutMeWrapper>
 
-          <Text>Testing of new CD environment with github actions</Text>
-
-          <Text>placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder </Text>
-
-          <a href="mailto:tamuzp@gmail.com">tamuzp@gmail.com</a>
         </Container>
       </Section>
     )

@@ -130,10 +130,8 @@ export default class Experience extends React.Component {
 
   render() {
     return (
-      <ExperienceWrapper>
+      <ExperienceWrapper id="Experience">
         <Container>
-          <Subheading>My Experience</Subheading>
-
           <ExperienceMenu onSelectItem = {this.handleMenu} selected={this.state.selected}/>
 
           <TimelineAnimator show={this.state.firstSec}>
@@ -143,8 +141,6 @@ export default class Experience extends React.Component {
           <TimelineAnimator show={!this.state.firstSec}>
             <Timeline type={this.state.altSection} color={this.state.altColor} />
           </TimelineAnimator>
-
-          <Text>Let's get in touch:</Text>
 
           <Link href={"mailto:" + AboutMe.email}>{AboutMe.email}</Link>
         </Container>

@@ -1,6 +1,8 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import Button from './Button'
+import PropTypes from "prop-types";
+import { HashLink as Link } from 'react-router-hash-link';
 
 import { NavLink } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
@@ -12,14 +14,15 @@ const Header = styled.header`
     left: 0;
     z-index: 999;
    
-    background-color: black;
+    background-color: #09141e;
 
     @media (min-width:479px){
         height
     }
 `
 const NavWrapper = styled.div`
-    height: 70px;
+    height: ${props => props.show ? "70px" : "0"};
+    transition: height .2s;
 
     @media (max-width: 479px) {
         fles-direction: column;
@@ -99,20 +102,46 @@ export default class Nav extends React.Component {
         this.state = {
             isMobile: false,
             show: true,
+            scrollPos: 0,
+            scrollAmount: 0,
             navMenu: ["Home", "About", "Contact", "Experience"]
         }
 
         this.toggleMenu = this.toggleMenu.bind(this)
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+        this.handleScroll = this.handleScroll.bind(this);
     }
+
 
     componentDidMount() {
         this.updateWindowDimensions();
         window.addEventListener('resize', this.updateWindowDimensions);
+        document.querySelector('.main-content').addEventListener('scroll', this.handleScroll);
     }
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateWindowDimensions);
+        document.querySelector('.main-content').removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll(event) {
+        const { scrollPos } = this.state;
+        if (document.querySelector('.main-content').scrollTop > scrollPos) {
+            this.state.scrollAmount++
+            if (this.state.scrollAmount > 20) {
+                this.setState({
+                    scrollPos: document.querySelector('.main-content').scrollTop,
+                    show: false
+                })
+                this.state.scrollAmount = 0
+            }
+        } else {
+            this.setState({
+                scrollPos: document.querySelector('.main-content').scrollTop,
+                show: true
+            });
+            this.state.scrollAmount = 0
+        }
     }
 
     updateWindowDimensions() {
@@ -133,12 +162,12 @@ export default class Nav extends React.Component {
     MenuItem(props) {
         return (
             <NavItem>
-                <NavLink
-                    exact
-                    to={props.title === "Home" ? "/" : "/" + props.title}
+                <Link
+                smooth
+                    to={"#" + props.title}
                     onClick={props.onClick}
                     key={props.i}
-                >{props.title}</NavLink>
+                >{props.title}</Link>
             </NavItem>
         )
     }
@@ -146,12 +175,12 @@ export default class Nav extends React.Component {
     render() {
         return (
             <Header>
-                <NavWrapper>
+                <NavWrapper show={this.state.show ? true : false}>
                     <NavButton onClick={this.toggleMenu}>Menu</NavButton>
                     <Collapse in={this.state.show}>
                         <NavList>
                             {this.state.navMenu.map((title, i) => (
-                                <this.MenuItem title={title} onClick={() => {this.toggleMenu()}} key={i} />
+                                <this.MenuItem title={title} onClick={() => { this.toggleMenu() }} key={i} />
                             ))}
                         </NavList>
                     </Collapse>
