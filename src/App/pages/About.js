@@ -20,6 +20,12 @@ const AboutMeWrapper = styled.div`
   background-color: #eaf2fa;
   padding: 100px 50px;
   box-shadow: 6px 6px 8px 4px rgba(0,0,0,0.15);
+
+  @media(max-width:480px){
+    width: auto;
+    padding: 70px 35px;
+    margin: 10px;
+  }
 `
 
 export default class About extends React.Component {

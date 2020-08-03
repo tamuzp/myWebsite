@@ -102,6 +102,7 @@ export default class Nav extends React.Component {
         this.state = {
             isMobile: false,
             show: true,
+            open: false,
             scrollPos: 0,
             scrollAmount: 0,
             navMenu: ["Home", "About", "Contact", "Experience"]
@@ -154,7 +155,7 @@ export default class Nav extends React.Component {
     toggleMenu() {
         if (this.state.isMobile) {
             this.setState({
-                show: !this.state.show
+                open: !this.state.open
             })
         }
     }
@@ -163,7 +164,7 @@ export default class Nav extends React.Component {
         return (
             <NavItem>
                 <Link
-                smooth
+                    smooth
                     to={"#" + props.title}
                     onClick={props.onClick}
                     key={props.i}
@@ -177,7 +178,7 @@ export default class Nav extends React.Component {
             <Header>
                 <NavWrapper show={this.state.show ? true : false}>
                     <NavButton onClick={this.toggleMenu}>Menu</NavButton>
-                    <Collapse in={this.state.show}>
+                    <Collapse in={this.state.open || !this.state.isMobile}>
                         <NavList>
                             {this.state.navMenu.map((title, i) => (
                                 <this.MenuItem title={title} onClick={() => { this.toggleMenu() }} key={i} />
